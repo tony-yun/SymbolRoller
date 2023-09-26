@@ -15,21 +15,30 @@ class SymbolRollerViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var button: UIButton!
     
+    // 메모리 올라가고, 화면 준비하고.
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        reload()
     }
     
+    // 화면이 곧 보여진다.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // 화면이 보여진 이후.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    func reload(){
+        let symbol = symbols.randomElement()! // !는 값이 확실히 있다고 표시하는 것.
+        imageView.image = UIImage(systemName: symbol)
+        label.text = symbol
+    }
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+        reload()
+    }
     
 }
